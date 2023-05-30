@@ -98,31 +98,31 @@ import random
 # 5. Find missing subjects
 
 
-def get_subjects_not_passed_by_all_students(student_exams):
-    exams = set()
-    for i in student_exams:
-        if i[1] < 60:
-            exams.add(i[2])
-    print(exams)        
-    return exams        
+# def get_subjects_not_passed_by_all_students(student_exams):
+#     exams = set()
+#     for i in student_exams:
+#         if i[1] < 60:
+#             exams.add(i[2])
+#     print(exams)        
+#     return exams        
 
 
 
-def test_get_subjects_not_passed_by_all_students():
-    exams = [
-        ("Alice", 85, "Math"),
-        ("Bob", 59, "Math"),
-        ("Charlie", 65, "Math"),
-        ("Alice", 90, "Science"),
-        ("Bob", 80, "Science"),
-        ("Charlie", 32, "Science"),
-        ("Alice", 95, "History"),
-        ("Bob", 85, "History"),
-        ("Charlie", 90, "History"),
-    ]
+# def test_get_subjects_not_passed_by_all_students():
+#     exams = [
+#         ("Alice", 85, "Math"),
+#         ("Bob", 59, "Math"),
+#         ("Charlie", 65, "Math"),
+#         ("Alice", 90, "Science"),
+#         ("Bob", 80, "Science"),
+#         ("Charlie", 32, "Science"),
+#         ("Alice", 95, "History"),
+#         ("Bob", 85, "History"),
+#         ("Charlie", 90, "History"),
+#     ]
 
     
-    assert get_subjects_not_passed_by_all_students(exams) == {"Science", "Math"}
+#     assert get_subjects_not_passed_by_all_students(exams) == {"Science", "Math"}
 
 
-print(test_get_subjects_not_passed_by_all_students())
+# print(test_get_subjects_not_passed_by_all_students())
