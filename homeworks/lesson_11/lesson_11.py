@@ -17,18 +17,5 @@ result = req.json()["data"][0]["url"]
 
 print(result)
 
-# TELEG_TOKEN = "6179781599:AAHi3O_MNuZdIK1cagZF7iqgzUSEspcTWmA"
-# BOT_URL = "t.me/gif_proj_bot"
 
-# TELEG_URL = "https://api.telegram.org/bot"
-
-
-# import asyncio
-# import telegram
-
-
-# async def main():
-#     bot = telegram.Bot(TELEG_TOKEN)
-#     async with bot:
-#         print((await bot.get_updates())[0])
 
