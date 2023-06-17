@@ -11,17 +11,24 @@ class Car:
         self.speed = max(0,speed)
 
     def accelerate(self):
-        return self.speed + 5
+        self.speed += 5
+        return self.speed
     
     def brake(self):
         if self.speed - 5 < 0:
             return 0
-        return self.speed - 5
+        self.speed -= 5
+        return self.speed
         
     def display_speed(self):
         return self.speed
     
 
-ford = Car("ford", "gt500 shelby", 1967, -5)    
+ford = Car("ford", "gt500 shelby", 1967, 10)    
 
-print(ford.display_speed())
+
+
+
+
+
+
