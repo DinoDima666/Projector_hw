@@ -1,0 +1,75 @@
+psql postgres
+
+CREATE TABLE client (
+    id serial PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE room (
+    id serial PRIMARY KEY,
+    host_id INT NOT NULL,
+    amount_of_residents INT NOT NULL,
+    price INT NOT NULL,
+    "a/c" BOOL NOT NULL,
+    fridge BOOLEAN NOT NULL,
+    reservation_fee INT NOT NULL,
+
+    FOREIGN KEY (host_id)
+        REFERENCES client (id)
+);
+
+CREATE TABLE reservation (
+    id serial PRIMARY KEY,
+    guest_id INT NOT NULL,
+    room_id INT NOT NULL,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+
+    FOREIGN KEY (guest_id)
+        REFERENCES client (id),
+    FOREIGN KEY (room_id)
+        REFERENCES room (id)    
+
+);
+
+CREATE TABLE reviews (
+    id serial PRIMARY KEY,
+    guest_id INT NOT NULL,
+    room_id INT NOT NULL,
+    rating INT NOT NULL,
+    comment VARCHAR(250) NOT NULL,
+
+    FOREIGN KEY (guest_id)
+        REFERENCES client (id),
+    FOREIGN KEY (room_id)
+        REFERENCES room (id) 
+);
+
+INSERT INTO client (name, role) VALUES ('Eddie', 'Host'), ('Yoshimitsu', 'Guest'), ('King', 'Guest');
+
+INSERT INTO room (host_id, amount_of_residents, price, "a/c", fridge, reservation_fee) 
+VALUES (1, 2, 1000, TRUE, TRUE, 300), (1, 5, 3000, TRUE, TRUE, 1000), (1, 3, 2000, FALSE, TRUE, 800) ;
+
+INSERT INTO reservation (guest_id, room_id, check_in, check_out, status) 
+VALUES 
+(3, 1, '2023-07-29', '2023-08-06', 'Reserved'), 
+(2, 2, '2023-07-6', '2023-07-13', 'Reserved'),
+(2, 1, '2023-08-6', '2023-08-23', 'Reserved');
+
+INSERT INTO reviews (guest_id, room_id, rating, comment) 
+VALUES 
+(2, 2, 4, 'Everything was fine, but the room was a bit dirty'), 
+(3, 1, 3, 'It was okay, I guess...'),
+(2, 1, 5, 'This time I took my family with me and the same host suprised me with even better quality.');
+
+
+
+
+SELECT client.id, client.name
+FROM client
+JOIN reservation ON client.id = reservation.guest_id
+GROUP BY client.id, client.name
+ORDER BY COUNT(reservation.id) DESC
+LIMIT 1;

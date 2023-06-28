@@ -27,6 +27,8 @@ class Car:
 ford = Car("ford", "gt500 shelby", 1967, 10)    
 
 
+ford.display_speed()
+print('ford.display_speed(): ', ford.display_speed())
 
 
 
